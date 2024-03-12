@@ -1,7 +1,7 @@
 ## Movie App | 영화앱
 
 - [x] Router 설정
-- [] 각 컴포넌트 제작
+- [x] 각 컴포넌트 제작
 - [] Api 설정
 - [] Loading 설정
 - [] Home ui 및 페이지 구성

@@ -15,3 +15,6 @@ const options = {
 };
 
 //내일 now_playing 진행
+
+export const nowPlaying = () =>
+  fetch(url("movie/now_playing"), options).then((res) => res.json());

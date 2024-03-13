@@ -2,7 +2,7 @@
 
 - [x] Router 설정
 - [x] 각 컴포넌트 제작
-- [] Api 설정
+- [x] Api 설정
 - [] Loading 설정
 - [] Home ui 및 페이지 구성
 - [] Detail ui 및 페이지 구성
@@ -15,8 +15,8 @@
 
 ## 설치항목
 
-- [] react-router-dom
-- [] styled-components
+- [x] react-router-dom
+- [x] styled-components
 - [] styled-reset
 - [] react-hook-form
 - [] helmet-async

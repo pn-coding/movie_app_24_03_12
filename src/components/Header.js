@@ -12,6 +12,11 @@ const Container = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
+
+  @media screen and (max-width: 450px) {
+    padding: 20px 20px;
+  }
 `;
 
 const Logo = styled.div`
@@ -29,6 +34,13 @@ const Nav = styled.ul`
   align-items: center;
   li {
     margin-left: 100px;
+  }
+
+  @media screen and (max-width: 450px) {
+    li {
+      margin-left: 30px;
+      font-size: 16px;
+    }
   }
 `;
 

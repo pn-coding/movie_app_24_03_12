@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { nowPlaying } from "../../api";
-import styled from "styled-components";
-import { IMG_URL } from "../../constant/url";
 import { MainBanner } from "./MainBanner";
+import { Loading } from "../../components/Loading";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +19,7 @@ export const Home = () => {
   return (
     <>
       {isLoading ? (
-        "loading.."
+        <Loading />
       ) : (
         <>{nowData && <MainBanner imgUrl={nowData} />}</>
       )}

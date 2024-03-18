@@ -18,3 +18,15 @@ const options = {
 
 export const nowPlaying = () =>
   fetch(url("movie/now_playing"), options).then((res) => res.json());
+
+export const popular = () => {
+  return fetch(url("movie/popular"), options).then((res) => res.json());
+};
+
+export const topRated = () => {
+  return fetch(url("movie/top_rated"), options).then((res) => res.json());
+};
+
+export const upComing = () => {
+  return fetch(url("movie/upcoming"), options).then((res) => res.json());
+};

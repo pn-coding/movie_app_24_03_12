@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import { nowPlaying } from "../../api";
+import { nowPlaying, popular, topRated, upComing } from "../../api";
 import { MainBanner } from "./MainBanner";
 import { Loading } from "../../components/Loading";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { IMG_URL, IMG_URL_500 } from "../../constant/url";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Movies } from "./Movies";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [nowData, setNowData] = useState();
+  const [popData, setPopData] = useState();
+  const [topData, setTopData] = useState();
+  const [upData, setUpData] = useState();
 
   useEffect(() => {
     (async () => {
       try {
-        const { results } = await nowPlaying();
-        setNowData(results);
+        const { results: nowResult } = await nowPlaying();
+        const { results: popResult } = await popular();
+        const { results: topResult } = await topRated();
+        const { results: upResult } = await upComing();
+
+        setNowData(nowResult);
+        setPopData(popResult);
+        setTopData(topResult);
+        setUpData(upResult);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -25,7 +31,6 @@ export const Home = () => {
       }
     })();
   }, []);
-  console.log(nowData);
 
   return (
     <>
@@ -38,6 +43,9 @@ export const Home = () => {
               <MainBanner imgUrl={nowData} />
 
               <Movies movieData={nowData} titleText={"현재 상영 영화"} />
+              <Movies movieData={upData} titleText={"개봉 예정 영화"} />
+              <Movies movieData={popData} titleText={"인기 영화"} />
+              <Movies movieData={topData} titleText={"평점이 높은"} />
             </>
           )}
         </>

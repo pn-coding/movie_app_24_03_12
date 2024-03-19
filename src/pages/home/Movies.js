@@ -2,15 +2,16 @@ import styled from "styled-components";
 import { IMG_URL_500 } from "../../constant/url";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
+import { spacing } from "../../components/GlobalStyled";
 
 const Section = styled.section`
   padding: 100px 0 50px 100px;
 
   @media screen and (max-width: 640px) {
-    padding: 100px 0 50px 50px;
+    padding: 100px 0 50px ${spacing.padding_640};
   }
   @media screen and (max-width: 450px) {
-    padding: 60px 0 0px 20px;
+    padding: 60px 0 0px ${spacing.padding_450};
   }
 `;
 

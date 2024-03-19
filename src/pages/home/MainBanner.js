@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IMG_URL } from "../../constant/url";
+import { spacing } from "../../components/GlobalStyled";
 
 const Banner = styled.section`
   height: 80vh;
@@ -26,7 +27,7 @@ const Title = styled.div`
   }
 
   @media screen and (max-width: 450px) {
-    left: 20px;
+    left: ${spacing.padding_450};
     bottom: 120px;
     h3 {
       font-size: 50px;

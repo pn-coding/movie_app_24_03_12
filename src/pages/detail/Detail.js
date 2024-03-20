@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { movieDetail } from "../../api";
 import { useParams } from "react-router-dom";
 import { Loading } from "../../components/Loading";
-import styled from "styled-components";
-import { IMG_URL } from "../../constant/url";
 import { Contents } from "./Contents";
-import { spacing } from "../../components/GlobalStyled";
 
 export const Detail = () => {
   const { id } = useParams();

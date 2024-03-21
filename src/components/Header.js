@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { routes } from "../routes";
 import styled from "styled-components";
 import { colors } from "./GlobalStyled";
+import { useEffect, useRef } from "react";
 
 const Container = styled.header`
   padding: 20px 50px;
@@ -9,7 +10,7 @@ const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
@@ -45,8 +46,29 @@ const Nav = styled.ul`
 `;
 
 export const Header = () => {
+  const headerRef = useRef();
+
+  const scrollHandler = () => {
+    const pageY = window.scrollY;
+    const current = headerRef.current;
+
+    if (pageY >= 400) {
+      current.style.position = "fixed";
+      current.style.backgroundColor = "rgba(0,0,0,0.5)";
+      current.style.backdropFilter = "blur(10px)";
+    } else {
+      current.style.position = "absolute";
+      current.style.backgroundColor = "transparent";
+      current.style.backdropFilter = "blur(0px)";
+    }
+  };
+
+  useEffect(() => {
+    return window.addEventListener("scroll", scrollHandler);
+  });
+
   return (
-    <Container>
+    <Container ref={headerRef}>
       <Logo>
         <Link to={routes.home}>PNMOVIE</Link>
       </Logo>

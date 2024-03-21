@@ -6,6 +6,7 @@ import { IMG_URL_SIZE } from "../../constant/url";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { Loading } from "../../components/Loading";
+import { PageTitle } from "../../components/PageTitle";
 
 const Container = styled.section`
   padding: 150px;
@@ -84,6 +85,7 @@ export const Search = () => {
 
   return (
     <Container>
+      <PageTitle title={"Search"} />
       <SForm onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register("search", {

@@ -4,6 +4,7 @@ import { MainBanner } from "./MainBanner";
 import { Loading } from "../../components/Loading";
 import "swiper/css";
 import { Movies } from "./Movies";
+import { PageTitle } from "../../components/PageTitle";
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,8 +41,8 @@ export const Home = () => {
         <>
           {nowData && (
             <>
+              <PageTitle title={"Home"} />
               <MainBanner imgUrl={nowData} />
-
               <Movies movieData={nowData} titleText={"현재 상영 영화"} />
               <Movies movieData={upData} titleText={"개봉 예정 영화"} />
               <Movies movieData={popData} titleText={"인기 영화"} />

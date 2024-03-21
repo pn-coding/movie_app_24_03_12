@@ -5,6 +5,7 @@ import { useState } from "react";
 import { IMG_URL_SIZE } from "../../constant/url";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
+import { Loading } from "../../components/Loading";
 
 const Container = styled.section`
   padding: 150px;
@@ -42,7 +43,13 @@ const Con = styled.div`
   }
 `;
 
-const Bg = styled.div``;
+const Bg = styled.div`
+  height: 350px;
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 const Text = styled.h3`
   margin: 100px 0 30px 0;
@@ -52,24 +59,28 @@ const Text = styled.h3`
 
 export const Search = () => {
   const [term, setTerm] = useState();
+  const [keyword, setKeyword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    getValues,
-  } = useForm();
+    formState: { errors },
+  } = useForm({
+    mode: "onSubmit",
+  });
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     const { search: keyword } = data;
     try {
       const { results } = await searchMovie(keyword);
       setTerm(results);
+      setKeyword(keyword);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-
-  const { search } = getValues();
 
   return (
     <Container>
@@ -83,23 +94,36 @@ export const Search = () => {
         />
         <IoIosSearch />
       </SForm>
-      {term ? <Text>"{search}" 검색 결과</Text> : ""}
+      {errors ? errors?.search?.message : ""}
+      {term ? <Text>"{keyword}" 검색 결과</Text> : ""}
 
       {term && (
         <ConWrap>
-          {term.map((data) => (
-            <Con key={data.id}>
-              <Link to={`detail/${data.id}`}>
-                <Bg>
-                  <img
-                    src={`${IMG_URL_SIZE.size_200}${data.poster_path}`}
-                    alt={data.title}
-                  />
-                </Bg>
-                <h3>{data.title}</h3>
-              </Link>
-            </Con>
-          ))}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {term.map((data) => (
+                <Con key={data.id}>
+                  <Link to={`detail/${data.id}`}>
+                    <Bg>
+                      {data.poster_path ? (
+                        <img
+                          src={`${IMG_URL_SIZE.size_200}${data.poster_path}`}
+                          alt={data.title}
+                        />
+                      ) : (
+                        <img
+                          src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                          alt="이미지 없음"
+                        />
+                      )}
+                    </Bg>
+                  </Link>
+                </Con>
+              ))}
+            </>
+          )}
         </ConWrap>
       )}
     </Container>

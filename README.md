@@ -22,5 +22,5 @@
 - [x] styled-reset
 - [x] swiper
 - [x] font-awesome
-- [] react-hook-form
+- [x] react-hook-form
 - [] helmet-async

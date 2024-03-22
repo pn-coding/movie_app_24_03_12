@@ -28,7 +28,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://pn-coding/movie_app_23_11_08/#/",
+  "homepage": "https://pn-coding/movie_app_23_11_08/",
   "eslintConfig": {
     "extends": [
       "react-app",

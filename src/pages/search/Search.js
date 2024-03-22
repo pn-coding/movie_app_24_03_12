@@ -107,7 +107,7 @@ export const Search = () => {
             <>
               {term.map((data) => (
                 <Con key={data.id}>
-                  <Link to={`detail/${data.id}`}>
+                  <Link to={`/detail/${data.id}`}>
                     <Bg>
                       {data.poster_path ? (
                         <img
